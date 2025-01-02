@@ -67,4 +67,14 @@ public class StudyGroup {
         this.createdAt = createdAt;
     }
 
+    @Override
+    public String toString() {
+        return "StudyGroup{" +
+                "id=" + id +
+                ", groupName='" + groupName + '\'' +
+                ", groupDescription='" + groupDescription + '\'' +
+                ", leader=" + leader +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }

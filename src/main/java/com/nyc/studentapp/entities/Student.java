@@ -92,4 +92,16 @@ public class Student {
         this.group = group;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", enrollmentDate=" + enrollmentDate +
+                ", email='" + email + '\'' +
+                ", group=" + group +
+                '}';
+    }
 }
