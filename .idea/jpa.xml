@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpaBuddyIdeaProjectConfig">
+    <option name="reLastEntityCreationPackage" value="src/main/java/com/nyc/studentapp/entities" />
+    <option name="reverseEngineeringLastDbConnectionId" value="b00cacfe-5bff-4c6c-8a11-3cc5a8dadece__postgres_studentappdb" />
+  </component>
+</project>
