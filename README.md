@@ -1,6 +1,10 @@
 # StudyHub - Student Management Platform
 
-A web application for managing students and study groups, built with Spring Boot and Thymeleaf.
+A web application for managing students and study groups, built with Spring Boot and Thymeleaf. This project was created for educational purposes and presented as part of a workshop at New York College of Thessaloniki.
+
+## Quick Demo
+
+![StudyHub Demo](docs/demo/studyhub-demo.gif)
 
 ## Features
 
