@@ -45,10 +45,6 @@ A web application for managing students and study groups, built with Spring Boot
 - PostgreSQL
 
 
-## Quick Demo
-
-![StudyHub Demo](docs/demo/studyhub-demo.gif)
-
 ### Database Setup
 1. Create a PostgreSQL database:
 ```sql
@@ -61,6 +57,10 @@ spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
 spring.datasource.username=your_username
 spring.datasource.password=your_password
 ```
+
+## Quick Demo
+
+![StudyHub Demo](docs/demo/studyhub-demo.gif)
 
 ### Installation
 
