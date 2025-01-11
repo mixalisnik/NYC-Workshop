@@ -2,8 +2,6 @@
 
 A simple web application for managing students and study groups, built with Spring Boot and Thymeleaf.
 
-![StudyHub Logo](src/main/resources/static/images/studyhub-logo.png)
-
 ## Features
 
 ### 🎓 Student Management
