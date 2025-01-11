@@ -1,14 +1,26 @@
 package com.nyc.studentapp.entities;
 
-import jakarta.persistence.*;
+import java.time.LocalDate;
+
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "student", schema = "studentappdb")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +46,7 @@ public class Student {
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "group_id")
+    @JsonIgnoreProperties("leader")
     private StudyGroup group;
 
     public Integer getId() {
@@ -92,6 +105,7 @@ public class Student {
         this.group = group;
     }
 
+    
     @Override
     public String toString() {
         return "Student{" +

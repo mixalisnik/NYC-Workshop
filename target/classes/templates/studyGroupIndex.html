@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Study Group Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-people-fill me-2"></i>
+                Study Group Management
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link text-white" href="/student">
+                    <i class="bi bi-mortarboard-fill me-1"></i>
+                    Students
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="content-card fade-in">
+            <!-- Header with Stats -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="p-3 bg-light rounded-3">
+                        <h6 class="text-secondary mb-1">Total Groups</h6>
+                        <h3 class="mb-0" id="totalGroups">0</h3>
+                    </div>
+                </div>
+                <div class="col-md-8 d-flex justify-content-end align-items-center">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addGroupModal">
+                        <i class="bi bi-plus-circle me-2"></i>Create Group
+                    </button>
+                </div>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input type="text" class="form-control border-start-0" id="searchInput" placeholder="Search study groups...">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Study Groups Table -->
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Group Name</th>
+                            <th>Description</th>
+                            <th>Leader</th>
+                            <th>Created At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="groupsTableBody">
+                        <!-- Groups will be loaded here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" class="text-center py-4 d-none">
+                <div class="spinner mx-auto"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Group Modal -->
+    <div class="modal fade" id="addGroupModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-people-fill me-2"></i>
+                        Create Study Group
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addGroupForm">
+                        <div class="mb-3">
+                            <label for="groupName" class="form-label">Group Name</label>
+                            <input type="text" class="form-control" id="groupName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="groupDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="groupDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="leaderId" class="form-label">Group Leader</label>
+                            <select class="form-control" id="leaderId" required>
+                                <!-- Leaders will be loaded here -->
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="createGroup()">
+                        <i class="bi bi-save me-2"></i>Create Group
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Group Modal -->
+    <div class="modal fade" id="editGroupModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-pencil-square me-2"></i>
+                        Edit Study Group
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editGroupForm">
+                        <input type="hidden" id="editGroupId">
+                        <div class="mb-3">
+                            <label for="editGroupName" class="form-label">Group Name</label>
+                            <input type="text" class="form-control" id="editGroupName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editGroupDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="editGroupDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editLeaderId" class="form-label">Group Leader</label>
+                            <select class="form-control" id="editLeaderId" required>
+                                <!-- Leaders will be loaded here -->
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="updateGroup()">
+                        <i class="bi bi-check-lg me-2"></i>Save Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Load groups when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            loadGroups();
+            loadStudentsForSelect();
+        });
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#groupsTableBody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+
+        function showLoading() {
+            document.getElementById('loadingSpinner').classList.remove('d-none');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingSpinner').classList.add('d-none');
+        }
+
+        function loadStudentsForSelect() {
+            fetch('/student/read')
+                .then(response => response.json())
+                .then(students => {
+                    const leaderSelects = ['leaderId', 'editLeaderId'];
+                    leaderSelects.forEach(selectId => {
+                        const select = document.getElementById(selectId);
+                        select.innerHTML = '<option value="">Select a leader...</option>';
+                        students.forEach(student => {
+                            select.innerHTML += `
+                                <option value="${student.id}">
+                                    ${student.firstName} ${student.lastName}
+                                </option>
+                            `;
+                        });
+                    });
+                })
+                .catch(error => console.error('Error loading students:', error));
+        }
+
+        function loadGroups() {
+            showLoading();
+            fetch('/studygroup/read')
+                .then(response => response.json())
+                .then(groups => {
+                    const tableBody = document.getElementById('groupsTableBody');
+                    tableBody.innerHTML = '';
+                    document.getElementById('totalGroups').textContent = groups.length;
+                    
+                    groups.forEach(group => {
+                        const row = document.createElement('tr');
+                        row.className = 'fade-in';
+                        row.innerHTML = `
+                            <td>${group.id}</td>
+                            <td>${group.groupName}</td>
+                            <td>${group.groupDescription}</td>
+                            <td>${group.leader ? `${group.leader.firstName} ${group.leader.lastName}` : 'N/A'}</td>
+                            <td>${new Date(group.createdAt).toLocaleDateString()}</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-outline-primary" onclick='openEditModal(${JSON.stringify(group)})'>
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger" onclick="deleteGroup(${group.id})">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                    hideLoading();
+                })
+                .catch(error => {
+                    console.error('Error loading groups:', error);
+                    hideLoading();
+                });
+        }
+
+        function createGroup() {
+            const group = {
+                groupName: document.getElementById('groupName').value,
+                groupDescription: document.getElementById('groupDescription').value,
+                leader: { id: document.getElementById('leaderId').value }
+            };
+
+            showLoading();
+            fetch('/studygroup/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(group)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(() => {
+                loadGroups();
+                document.getElementById('addGroupForm').reset();
+                bootstrap.Modal.getInstance(document.getElementById('addGroupModal')).hide();
+            })
+            .catch(error => {
+                console.error('Error creating group:', error);
+                hideLoading();
+                alert('Error creating group. Please try again.');
+            });
+        }
+
+        function openEditModal(group) {
+            document.getElementById('editGroupId').value = group.id;
+            document.getElementById('editGroupName').value = group.groupName;
+            document.getElementById('editGroupDescription').value = group.groupDescription;
+            document.getElementById('editLeaderId').value = group.leader ? group.leader.id : '';
+            new bootstrap.Modal(document.getElementById('editGroupModal')).show();
+        }
+
+        function updateGroup() {
+            const groupId = document.getElementById('editGroupId').value;
+            const group = {
+                groupName: document.getElementById('editGroupName').value,
+                groupDescription: document.getElementById('editGroupDescription').value,
+                leader: { id: document.getElementById('editLeaderId').value }
+            };
+
+            showLoading();
+            fetch(`/studygroup/update/${groupId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(group)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(() => {
+                loadGroups();
+                bootstrap.Modal.getInstance(document.getElementById('editGroupModal')).hide();
+            })
+            .catch(error => {
+                console.error('Error updating group:', error);
+                hideLoading();
+                alert('Error updating group. Please try again.');
+            });
+        }
+
+        function deleteGroup(id) {
+            if (confirm('Are you sure you want to delete this study group?')) {
+                showLoading();
+                fetch(`/studygroup/delete/${id}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    loadGroups();
+                })
+                .catch(error => {
+                    console.error('Error deleting group:', error);
+                    hideLoading();
+                    alert('Error deleting group. Please try again.');
+                });
+            }
+        }
+    </script>
+</body>
+</html> 

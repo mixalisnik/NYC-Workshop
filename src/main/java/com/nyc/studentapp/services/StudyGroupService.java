@@ -34,13 +34,18 @@ public class StudyGroupService {
     }
     
     // Update
-    public StudyGroup updateStudyGroup(Integer id, StudyGroup updatedStudyGroup) {
-        updatedStudyGroup.setId(id);
-        return studyGroupRepository.save(updatedStudyGroup);
+    public StudyGroup updateStudyGroup(StudyGroup studyGroup) {
+        if (!studyGroupRepository.existsById(studyGroup.getId())) {
+            throw new IllegalArgumentException("Study group not found with id: " + studyGroup.getId());
+        }
+        return studyGroupRepository.save(studyGroup);
     }
     
     // Delete
     public void deleteStudyGroup(Integer id) {
+        if (!studyGroupRepository.existsById(id)) {
+            throw new IllegalArgumentException("Study group not found with id: " + id);
+        }
         studyGroupRepository.deleteById(id);
     }
 } 

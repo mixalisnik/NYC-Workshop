@@ -1,12 +1,24 @@
 package com.nyc.studentapp.entities;
 
-import jakarta.persistence.*;
+import java.time.Instant;
+
 import org.hibernate.annotations.ColumnDefault;
 
-import java.time.Instant;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "study_group", schema = "studentappdb")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class StudyGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +31,9 @@ public class StudyGroup {
     @Column(name = "group_description", nullable = false, length = 500)
     private String groupDescription;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "leader_id")
+    @JsonIgnoreProperties("group")
     private Student leader;
 
     @ColumnDefault("now()")
@@ -65,16 +78,5 @@ public class StudyGroup {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
-    }
-
-    @Override
-    public String toString() {
-        return "StudyGroup{" +
-                "id=" + id +
-                ", groupName='" + groupName + '\'' +
-                ", groupDescription='" + groupDescription + '\'' +
-                ", leader=" + leader +
-                ", createdAt=" + createdAt +
-                '}';
     }
 }
