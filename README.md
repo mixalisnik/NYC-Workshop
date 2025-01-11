@@ -1,6 +1,6 @@
 # StudyHub - Student Management Platform
 
-A simple web application for managing students and study groups, built with Spring Boot and Thymeleaf.
+A web application for managing students and study groups, built with Spring Boot and Thymeleaf.
 
 ## Features
 
@@ -99,16 +99,31 @@ src/
 ## API Endpoints
 
 ### Student Management
-- `GET /student` - View all students
+- `GET /student` - View student management page
+- `GET /student/read` - Get all students
+- `GET /student/read/{id}` - Get student by ID
 - `POST /student/create` - Create new student
 - `PUT /student/update/{id}` - Update student
 - `DELETE /student/delete/{id}` - Delete student
 
 ### Study Groups
-- `GET /studygroup` - View all study groups
+- `GET /studygroup` - View study groups page
+- `GET /studygroup/read` - Get all study groups
+- `GET /studygroup/read/{id}` - Get study group by ID
 - `POST /studygroup/create` - Create new study group
 - `PUT /studygroup/update/{id}` - Update study group
 - `DELETE /studygroup/delete/{id}` - Delete study group
+
+### Development Test Endpoints
+#### Student Test Endpoints
+- `GET /student/test/create` - Test student creation
+- `GET /student/test/update/{id}` - Test student update
+- `GET /student/test/delete/{id}` - Test student deletion
+
+#### Study Group Test Endpoints
+- `GET /studygroup/test/create` - Test study group creation
+- `GET /studygroup/test/update/{id}` - Test study group update
+- `GET /studygroup/test/delete/{id}` - Test study group deletion
 
 ## Contributing
 
@@ -124,8 +139,12 @@ src/
 - [@harischatzianastasiou](https://github.com/harischatzianastasiou)
 - [@sykalerio](https://github.com/sykalerio)
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ## Acknowledgments
 
 - [Netcompany Intrasoft](https://www.netcompany-intrasoft.com/) for support and guidance
 - Spring Boot and Thymeleaf communities for excellent documentation
-- Bootstrap team for the amazing UI framework
+- Bootstrap team for the amazing UI framework 
