@@ -1,2 +1,10 @@
-com\nyc\studentapp\repositories\StudentRepository.class
+com\nyc\studentapp\StudentappApplication.class
+com\nyc\studentapp\controllers\MainController.class
+com\nyc\studentapp\controllers\StudentController.class
+com\nyc\studentapp\controllers\StudyGroupController.class
 com\nyc\studentapp\repositories\StudyGroupRepository.class
+com\nyc\studentapp\repositories\StudentRepository.class
+com\nyc\studentapp\services\StudentService.class
+com\nyc\studentapp\entities\StudyGroup.class
+com\nyc\studentapp\services\StudyGroupService.class
+com\nyc\studentapp\entities\Student.class

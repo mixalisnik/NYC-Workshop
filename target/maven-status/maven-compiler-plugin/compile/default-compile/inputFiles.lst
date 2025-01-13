@@ -1,6 +1,10 @@
-C:\Users\tchatzia\OneDrive - Netcompany\Files\Notes\Languages\backend\Java\NYC-Workshop\src\main\java\com\nyc\studentapp\controllers\MainController.java
-C:\Users\tchatzia\OneDrive - Netcompany\Files\Notes\Languages\backend\Java\NYC-Workshop\src\main\java\com\nyc\studentapp\entities\Student.java
-C:\Users\tchatzia\OneDrive - Netcompany\Files\Notes\Languages\backend\Java\NYC-Workshop\src\main\java\com\nyc\studentapp\entities\StudyGroup.java
-C:\Users\tchatzia\OneDrive - Netcompany\Files\Notes\Languages\backend\Java\NYC-Workshop\src\main\java\com\nyc\studentapp\repositories\StudentRepository.java
-C:\Users\tchatzia\OneDrive - Netcompany\Files\Notes\Languages\backend\Java\NYC-Workshop\src\main\java\com\nyc\studentapp\repositories\StudyGroupRepository.java
-C:\Users\tchatzia\OneDrive - Netcompany\Files\Notes\Languages\backend\Java\NYC-Workshop\src\main\java\com\nyc\studentapp\StudentappApplication.java
+C:\Users\mnikitar\Downloads\mixalis\NYC-Workshop\src\main\java\com\nyc\studentapp\controllers\MainController.java
+C:\Users\mnikitar\Downloads\mixalis\NYC-Workshop\src\main\java\com\nyc\studentapp\controllers\StudentController.java
+C:\Users\mnikitar\Downloads\mixalis\NYC-Workshop\src\main\java\com\nyc\studentapp\controllers\StudyGroupController.java
+C:\Users\mnikitar\Downloads\mixalis\NYC-Workshop\src\main\java\com\nyc\studentapp\entities\Student.java
+C:\Users\mnikitar\Downloads\mixalis\NYC-Workshop\src\main\java\com\nyc\studentapp\entities\StudyGroup.java
+C:\Users\mnikitar\Downloads\mixalis\NYC-Workshop\src\main\java\com\nyc\studentapp\repositories\StudentRepository.java
+C:\Users\mnikitar\Downloads\mixalis\NYC-Workshop\src\main\java\com\nyc\studentapp\repositories\StudyGroupRepository.java
+C:\Users\mnikitar\Downloads\mixalis\NYC-Workshop\src\main\java\com\nyc\studentapp\services\StudentService.java
+C:\Users\mnikitar\Downloads\mixalis\NYC-Workshop\src\main\java\com\nyc\studentapp\services\StudyGroupService.java
+C:\Users\mnikitar\Downloads\mixalis\NYC-Workshop\src\main\java\com\nyc\studentapp\StudentappApplication.java
