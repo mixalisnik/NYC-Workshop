@@ -24,30 +24,23 @@ import jakarta.persistence.Table;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Integer id;
 
-    @Column(name = "first_name", nullable = false, length = 100)
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "last_name", nullable = false, length = 100)
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "age")
     private Integer age;
 
-    @ColumnDefault("CURRENT_DATE")
     @Column(name = "enrollment_date")
     private LocalDate enrollmentDate;
 
     @Column(name = "email")
     private String email;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.SET_NULL)
-    @JoinColumn(name = "group_id")
-    @JsonIgnoreProperties("leader")
-    private StudyGroup group;
 
     public Integer getId() {
         return id;
@@ -97,15 +90,6 @@ public class Student {
         this.email = email;
     }
 
-    public StudyGroup getGroup() {
-        return group;
-    }
-
-    public void setGroup(StudyGroup group) {
-        this.group = group;
-    }
-
-    
     @Override
     public String toString() {
         return "Student{" +
@@ -114,8 +98,7 @@ public class Student {
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 ", enrollmentDate=" + enrollmentDate +
-                ", email='" + email + '\'' +
-                ", group=" + group +
+                ", email='" + email +
                 '}';
     }
 }
